@@ -48,7 +48,7 @@ C:\xampp\xampp-control.exe
 ```
 http://localhost/phpMyAdmin
 ```
-6. Run [SQL Script](https://github.com/gordon502/expenses-controller/script.sql) from repository
+6. Run [SQL Script](https://github.com/gordon502/expenses-controller/blob/main/script.sql) from repository
 7. Paste project files to htdocs folder
 ```
 C:\xampp\htdocs
