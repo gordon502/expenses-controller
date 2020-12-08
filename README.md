@@ -17,7 +17,7 @@ not yet available
 ### Database schema
 [Link](https://dbdiagram.io/d/5fcf5bb49a6c525a03ba3de20)
 
-![Database image should be there](https://github.com/gordon502/expenses-controller/database_schema.png)
+![Database image should be there](https://github.com/gordon502/expenses-controller/blob/main/database_schema.png)
 
 ### Available operations (in nutshell)
 - Before login
@@ -48,7 +48,7 @@ C:\xampp\xampp-control.exe
 ```
 http://localhost/phpMyAdmin
 ```
-6. Run [SQL Script](https://github.com/gordon502/expenses-controller/script.sql) from repository
+6. Run [SQL Script](https://github.com/gordon502/expenses-controller/blob/main/script.sql) from repository
 7. Paste project files to htdocs folder
 ```
 C:\xampp\htdocs
