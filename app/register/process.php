@@ -1,0 +1,72 @@
+<?php
+session_start();
+$MIN_LOGIN_LENGTH = 8;
+$MAX_LOGIN_LENGTH = 45;
+$MIN_PASSWORD_LENGTH = 6;
+$MAX_PASSWORD_LENGTH = 20;
+
+
+function checkUserInput(string $login, string $password, string $passwordconf, string $email) : bool {
+    global $MIN_LOGIN_LENGTH, $MAX_LOGIN_LENGTH, $MIN_PASSWORD_LENGTH, $MAX_PASSWORD_LENGTH;
+
+    // check if login length matches in interval
+    if (strlen($login) < $MIN_LOGIN_LENGTH or strlen($login) > $MAX_LOGIN_LENGTH) {
+        $_SESSION['error'] = "Login must have minimum $MIN_LOGIN_LENGTH and maximum $MAX_LOGIN_LENGTH in length.";
+        return false;
+    }
+
+    // check if password length matches in interval
+    if (strlen($password) < $MIN_PASSWORD_LENGTH or strlen($password) > $MAX_PASSWORD_LENGTH) {
+        $_SESSION['error'] = "Password must have minimum $MIN_PASSWORD_LENGTH and maximum $MAX_PASSWORD_LENGTH in length.";
+        return false;
+    }
+
+    // check if password and confirmations are equal
+    if ($password !== $passwordconf) {
+        $_SESSION['error'] = 'Password and its confirmation must be the same!';
+        return false;
+    }
+
+    // validate email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['error'] = 'Given email has not proper format.';
+        return false;
+    }
+
+    return true;
+}
+
+/* RIGHT SCRIPT */
+
+// check if form was sended, if not redirect back to register page
+if (!isset($_POST['register'])) {
+    header('Location: ../?do=register');
+    return;
+}
+
+// validate if user input match constraints
+if (!checkUserInput($_POST['login'], $_POST['password'], $_POST['passwordconf'], $_POST['email'])) {
+    header('Location: ../?do=register');
+    return;
+}
+
+require_once '../database/repository.php';
+
+// check if given user already exists
+if (findUserByLogin($_POST['login'])) {
+    $_SESSION['error'] = 'User with given login already exists!';
+    header('Location: ../?do=register');
+    return;
+}
+
+// check if given mail is already used
+if (findUserByEmail($_POST['email'])) {
+    $_SESSION['error'] = 'Given email is already taken!';
+    header('Location: ../?do=register');
+    return;
+}
+
+// TODO: Add to database result
+
+
+

@@ -1,5 +1,11 @@
 <h2 class="content-subhead">Please fill in this registration form.</h2>
-<form action="content.php" method="post" class="pure-form pure-form-aligned">
+<h3 style="color: red"><?php
+    if (isset($_SESSION['error'])) {
+        echo $_SESSION['error'];
+        unset($_SESSION['error']);
+    } ?>
+</h3>
+<form action="register/process.php" method="post" class="pure-form pure-form-aligned">
     <fieldset>
         <div class="pure-control-group">
             <label for="name">Username</label>
