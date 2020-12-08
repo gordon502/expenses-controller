@@ -1,3 +1,8 @@
+<?php
+require "database/repository.php";
+testConnection();
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
