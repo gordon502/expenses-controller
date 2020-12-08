@@ -17,7 +17,7 @@ not yet available
 ### Database schema
 [Link](https://dbdiagram.io/d/5fcf5bb49a6c525a03ba3de20)
 
-![Database image should be there](https://github.com/gordon502/expenses-controller/database_schema.png)
+![Database image should be there](https://github.com/gordon502/expenses-controller/blob/main/database_schema.png)
 
 ### Available operations (in nutshell)
 - Before login
