@@ -6,8 +6,8 @@ $content = '123.php';
 // check which site user wants to load to content div
 if (isset($_GET['do'])) {
     if ($_GET['do'] == 'register') {
-        $header = 'register/header.php';
-        $content = 'register/content.php';
+        $header = 'register/view/header.php';
+        $content = 'register/view/content.php';
     }
 }
 ?>
