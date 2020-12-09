@@ -59,6 +59,26 @@ final class Repository {
         return $result;
     }
 
+    // return last inserted id
+    public function addNewUser(User $user) : int{
+        $stmt = $this->pdo->prepare('INSERT INTO users(login, email, salt, pass, active) ' .
+                                                'VALUES(:login, :email, :salt, :pass, :active)');
+        $stmt->execute(array(
+            ':login' => $user->getLogin(),
+            ':email' => $user->getEmail(),
+            ':salt' => $user->getSalt(),
+            ':pass' => $user->getPass(),
+            ':active' => $user->getActive()
+        ));
+
+        return $this->pdo->lastInsertId();
+    }
+
+    public function addActivationLinkByUserId(int $userID, string $link) {
+        $stmt = $this->pdo->prepare('INSERT INTO activation(link, user_id) VALUES (:link, :user_id)');
+        $stmt->execute(array(':link' => $link, ':user_id' => $userID));
+    }
+
 }
 
 

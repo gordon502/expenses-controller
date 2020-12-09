@@ -8,12 +8,13 @@ class User {
     private $pass;
     private $active;
 
-    public function __construct(int $id, string $login, string $email, string $salt, string $pass) {
+    public function __construct(int $id, string $login, string $email, string $salt, string $pass, string $active) {
         $this->id = $id;
         $this->login = $login;
         $this->email = $email;
         $this->salt = $salt;
         $this->pass = $pass;
+        $this->active = $active;
     }
 
     public function getId(): int {

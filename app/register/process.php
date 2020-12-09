@@ -51,6 +51,7 @@ if (!checkUserInput($_POST['login'], $_POST['password'], $_POST['passwordconf'],
 }
 
 require_once "../database/repository.php";
+require_once "../model/User.php";
 $repository = new Repository();
 
 // check if given user already exists
@@ -67,7 +68,23 @@ if ($repository->findUserByEmail($_POST['email'])) {
     return;
 }
 
-// TODO: Add to database result
 
+
+// generate safe salt and hashes
+$salt = hash('sha256', strval(random_int(1000000, PHP_INT_MAX)));
+$pass = hash('sha256', $salt . $_POST['password']);
+
+// Add new user and create activation link
+$insertedID = $repository->addNewUser(new User(0, $_POST['login'], $_POST['email'], $salt, $pass, 0));
+
+$hash = hash('md5', strval(random_int(PHP_INT_MIN, PHP_INT_MAX)));
+$link = substr($hash, 0, 30);
+$repository->addActivationLinkByUserId($insertedID, $link);
+
+$_SESSION['error'] = 'Register done! We send you registration link to your email account.';
+header('Location: ../?do=register');
+
+// TODO: Configure email account and send them activation link.
+// TODO: Create activate.php script
 
 
