@@ -53,5 +53,5 @@ class User {
     public function setPass(string $pass) {
         $this->pass = $pass;
     }
-    
+
 }

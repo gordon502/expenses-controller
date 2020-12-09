@@ -1,4 +1,5 @@
 <?php
+require_once "../model/User.php";
 
 final class Repository {
     private $pdo;
@@ -25,7 +26,13 @@ final class Repository {
         $stmt = $this->pdo->prepare('SELECT * FROM users WHERE login=:login');
         $stmt->execute(array(':login' => $login));
         while ($fetch = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $result = $fetch['login'];
+            $result = new User(
+                $fetch['id'],
+                $fetch['login'],
+                $fetch['email'],
+                $fetch['salt'],
+                $fetch['pass']
+            );
         }
 
         return $result;
@@ -38,7 +45,13 @@ final class Repository {
         $stmt = $this->pdo->prepare('SELECT * FROM users WHERE email=:email');
         $stmt->execute(array(':email' => $email));
         while ($fetch = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $result = $fetch['email'];
+            $result = new User(
+                $fetch['id'],
+                $fetch['login'],
+                $fetch['email'],
+                $fetch['salt'],
+                $fetch['pass']
+            );
         }
 
         return $result;

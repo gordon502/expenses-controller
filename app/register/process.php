@@ -50,8 +50,7 @@ if (!checkUserInput($_POST['login'], $_POST['password'], $_POST['passwordconf'],
     return;
 }
 
-require_once '../database/repository.php';
-
+require_once "../database/repository.php";
 $repository = new Repository();
 
 // check if given user already exists
