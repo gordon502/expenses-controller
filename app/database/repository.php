@@ -1,36 +1,49 @@
 <?php
-require_once "configuration.php";
 
-function testConnection() : bool {
-    $pdo = createDatabaseConnection();
-    $pdo->query('SELECT * FROM users');
-    return true;
-}
+final class Repository {
+    private $pdo;
 
-// TODO: change assigning to result login to User object
-function findUserByLogin(string $login) : mixed {
-    $result = false;
-
-    $pdo = createDatabaseConnection();
-    $stmt = $pdo->prepare('SELECT * FROM users WHERE login=:login');
-    $stmt->execute(array(':login' => $login));
-    while ($fetch = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $result = $fetch['login'];
+    public function __construct() {
+        $this->pdo = $this->createDatabaseConnection();
     }
 
-    return $result;
-}
-
-// TODO: change assigning to result login to User object
-function findUserByEmail(string $email) : mixed {
-    $result = false;
-
-    $pdo = createDatabaseConnection();
-    $stmt = $pdo->prepare('SELECT * FROM users WHERE email=:email');
-    $stmt->execute(array(':email' => $email));
-    while ($fetch = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $result = $fetch['email'];
+    private function createDatabaseConnection() : PDO {
+        $pdo = new PDO('mysql:host=localhost;port=3306;dbname=expensescontroller', 'somequietguy', 'C1nszkieH@sl0');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
     }
 
-    return $result;
+    public function testConnection() : bool {
+        $this->pdo->query('SELECT * FROM users');
+        return true;
+    }
+
+// TODO: change assigning to result login to User object
+    public function findUserByLogin(string $login) : mixed {
+        $result = false;
+
+        $stmt = $this->pdo->prepare('SELECT * FROM users WHERE login=:login');
+        $stmt->execute(array(':login' => $login));
+        while ($fetch = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $result = $fetch['login'];
+        }
+
+        return $result;
+    }
+
+// TODO: change assigning to result login to User object
+    public function findUserByEmail(string $email) : mixed {
+        $result = false;
+
+        $stmt = $this->pdo->prepare('SELECT * FROM users WHERE email=:email');
+        $stmt->execute(array(':email' => $email));
+        while ($fetch = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $result = $fetch['email'];
+        }
+
+        return $result;
+    }
+
 }
+
+

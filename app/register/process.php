@@ -52,15 +52,17 @@ if (!checkUserInput($_POST['login'], $_POST['password'], $_POST['passwordconf'],
 
 require_once '../database/repository.php';
 
+$repository = new Repository();
+
 // check if given user already exists
-if (findUserByLogin($_POST['login'])) {
+if ($repository->findUserByLogin($_POST['login'])) {
     $_SESSION['error'] = 'User with given login already exists!';
     header('Location: ../?do=register');
     return;
 }
 
 // check if given mail is already used
-if (findUserByEmail($_POST['email'])) {
+if ($repository->findUserByEmail($_POST['email'])) {
     $_SESSION['error'] = 'Given email is already taken!';
     header('Location: ../?do=register');
     return;

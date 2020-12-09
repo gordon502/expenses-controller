@@ -1,7 +1,5 @@
 <?php
 session_start();
-require "database/repository.php";
-testConnection();
 $header = '123.php';
 $content = '123.php';
 
