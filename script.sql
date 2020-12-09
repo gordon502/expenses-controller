@@ -4,7 +4,7 @@ DROP USER IF EXISTS 'somequietguy';
 
 CREATE DATABASE expensescontroller;
 
-CREATE USER 'somequietguy' IDENTIFIED BY 'g';
+CREATE USER 'somequietguy' IDENTIFIED BY 'C1nszkieH@sl0';
 
 GRANT ALL PRIVILEGES ON expensescontroller.* TO 'somequietguy';
 

@@ -6,6 +6,7 @@ class User {
     private $email;
     private $salt;
     private $pass;
+    private $active;
 
     public function __construct(int $id, string $login, string $email, string $salt, string $pass) {
         $this->id = $id;
@@ -54,4 +55,11 @@ class User {
         $this->pass = $pass;
     }
 
+    public function getActive() : bool {
+        return $this->active;
+    }
+
+    public function setActive(bool $active) {
+        $this->active = $active;
+    }
 }

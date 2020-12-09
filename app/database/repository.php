@@ -31,7 +31,8 @@ final class Repository {
                 $fetch['login'],
                 $fetch['email'],
                 $fetch['salt'],
-                $fetch['pass']
+                $fetch['pass'],
+                $fetch['active']
             );
         }
 
@@ -50,7 +51,8 @@ final class Repository {
                 $fetch['login'],
                 $fetch['email'],
                 $fetch['salt'],
-                $fetch['pass']
+                $fetch['pass'],
+                $fetch['active']
             );
         }
 
