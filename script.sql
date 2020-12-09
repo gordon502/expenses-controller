@@ -4,7 +4,7 @@ DROP USER IF EXISTS 'somequietguy';
 
 CREATE DATABASE expensescontroller;
 
-CREATE USER 'somequietguy' IDENTIFIED BY 'C1nszkieH@sl0';
+CREATE USER 'somequietguy' IDENTIFIED BY 'g';
 
 GRANT ALL PRIVILEGES ON expensescontroller.* TO 'somequietguy';
 
@@ -16,6 +16,7 @@ CREATE TABLE Users (
     email VARCHAR(45) UNIQUE NOT NULL,
     salt CHAR(64) NOT NULL,
     pass CHAR(64) NOT NULL,
+    active BIT NOT NULL,
     CONSTRAINT CHK_email CHECK (email like '%_@__%.__%'),
     CONSTRAINT CHK_salt CHECK (LENGTH(salt) = 64),
     CONSTRAINT CHK_pass CHECK (LENGTH(pass) = 64),
