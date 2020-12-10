@@ -85,6 +85,5 @@ $_SESSION['error'] = 'Register done! We send you registration link to your email
 header('Location: ../?do=register');
 
 // TODO: Configure email account and send them activation link.
-// TODO: Create activate.php script
 
 

@@ -19,7 +19,6 @@ final class Repository {
         return true;
     }
 
-// TODO: change assigning to result login to User object
     public function findUserByLogin(string $login) : mixed {
         $result = false;
 
@@ -39,7 +38,6 @@ final class Repository {
         return $result;
     }
 
-// TODO: change assigning to result login to User object
     public function findUserByEmail(string $email) : mixed {
         $result = false;
 
@@ -79,6 +77,31 @@ final class Repository {
         $stmt->execute(array(':link' => $link, ':user_id' => $userID));
     }
 
+    /**
+     * This function will set active in users table to 1 if link given in GET param is found and
+     * also delete corresponding record in activation table.
+     * @param string $link activation link
+     * @return bool result of the operation
+     */
+    public function activateUserByLink(string $link) : bool {
+        $result = false;
+        $ids = array();
+
+        $stmt = $this->pdo->prepare('SELECT user_id FROM activation WHERE link=:link');
+        $stmt->execute(array(':link' => $link));
+        while ($id = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $ids[] = $id['user_id'];
+        }
+
+        // set accounts to active and then delete activation links
+        foreach ($ids as $id) {
+            $this->pdo->query("UPDATE users SET active=1 WHERE id=$id");
+            $result = true;
+            $this->pdo->query("DELETE FROM activation WHERE user_id=$id");
+        }
+
+        return $result;
+    }
 }
 
 
