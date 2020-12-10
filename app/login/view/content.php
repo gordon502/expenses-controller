@@ -8,8 +8,8 @@
 <form action="login/process.php" method="post" class="pure-form pure-form-aligned">
     <fieldset>
         <div class="pure-control-group">
-            <label for="name">Username</label>
-            <input type="text" id="login" name="login" placeholder="Username" />
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Username" />
             <span class="pure-form-message-inline">Login must be at least 8 characters.</span>
         </div>
         <div class="pure-control-group">
