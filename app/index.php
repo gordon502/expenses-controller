@@ -3,16 +3,10 @@ session_start();
 $header = '123.php';
 $content = '123.php';
 
-// check which site user wants to load to content div
+// set which header and content load depend on GET 'do' param
 if (isset($_GET['do'])) {
-    if ($_GET['do'] == 'register') {
-        $header = 'register/view/header.php';
-        $content = 'register/view/content.php';
-    }
-    else if ($_GET['do'] == 'login') {
-        $header = 'login/view/header.php';
-        $content = 'login/view/content.php';
-    }
+    $header = htmlentities($_GET['do']) . "/view/header.php";
+    $content = htmlentities($_GET['do']) . '/view/content.php';
 }
 ?>
 
