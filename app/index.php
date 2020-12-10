@@ -9,6 +9,10 @@ if (isset($_GET['do'])) {
         $header = 'register/view/header.php';
         $content = 'register/view/content.php';
     }
+    else if ($_GET['do'] == 'login') {
+        $header = 'login/view/header.php';
+        $content = 'login/view/content.php';
+    }
 }
 ?>
 
@@ -36,7 +40,7 @@ if (isset($_GET['do'])) {
             <a class="pure-menu-heading" href="#">Unlogged</a>
 
             <ul class="pure-menu-list">
-                <li class="pure-menu-item menu-item-divided"><a href="#" class="pure-menu-link">Login</a></li>
+                <li class="pure-menu-item menu-item-divided"><a href="?do=login" class="pure-menu-link">Login</a></li>
                 <li class="pure-menu-item"><a href="?do=register" class="pure-menu-link">Register</a></li>
             </ul>
         </div>
