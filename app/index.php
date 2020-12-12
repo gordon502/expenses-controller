@@ -21,7 +21,7 @@ if (isset($_GET['do'])) {
     <link rel="stylesheet" href="pure/side-menu.css">
 </head>
 <body>
-
+<script src="pure/jquery-3.5.1.min.js"></script>
 <div id="layout">
     <!-- Menu toggle -->
     <a href="#menu" id="menuLink" class="menu-link">
@@ -50,8 +50,6 @@ if (isset($_GET['do'])) {
         </div>
     </div>
 </div>
-
 <script src="pure/ui.js"></script>
-
 </body>
 </html>

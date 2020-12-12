@@ -5,7 +5,7 @@
         unset($_SESSION['error']);
     } ?>
 </h3>
-<form action="register/process.php" method="post" class="pure-form pure-form-aligned">
+<form action="#" method="post" class="pure-form pure-form-aligned">
     <fieldset>
         <div class="pure-control-group">
             <label for="name">Username</label>
@@ -18,8 +18,10 @@
             <span class="pure-form-message-inline">Login and email address must be associated!</span>
         </div>
         <div class="pure-controls">
-            <button class="pure-button">Check</button>
-        </div>
+            <button class="pure-button" type="button" id="checkButton" onclick="checkUser()">Check
+            </button>
+            <img src="https://media3.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif" id="spin" style="visibility: hidden; height: 1em; width: 1em;">
+        </div><br>
         <div id="newPasswordSubform" style="visibility: hidden;">
             <div class="pure-control-group">
                 <label for="password">New password</label>
@@ -40,3 +42,4 @@
         </div>
     </fieldset>
 </form>
+<script src="reset/view/script.js"></script>
