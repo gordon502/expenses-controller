@@ -1,10 +1,5 @@
 <h2 class="content-subhead">Here you can reset password to your account</h2>
-<h3 style="color: red"><?php
-    if (isset($_SESSION['error'])) {
-        echo $_SESSION['error'];
-        unset($_SESSION['error']);
-    } ?>
-</h3>
+<h3 id="error" style="color: red"></h3>
 <form action="#" method="post" class="pure-form pure-form-aligned">
     <fieldset>
         <div class="pure-control-group">

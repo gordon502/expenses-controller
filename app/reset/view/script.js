@@ -12,6 +12,10 @@ function checkUser() {
                 $('#email').prop('disabled', true);
                 console.log("eldo");
             }
+            else {
+                $('#error').html(data['message']);
+                $('#checkButton').prop('disabled', false);
+            }
             $('#spin').css('visibility', 'hidden');
         }, 3000);
     }
