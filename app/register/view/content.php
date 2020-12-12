@@ -31,4 +31,4 @@
         </div>
     </fieldset>
 </form>
-<a href="../../index.php">Already have account? Please log in.</a>
+<a href="?do=login">Already have account? Please log in.</a>

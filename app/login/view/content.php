@@ -22,4 +22,5 @@
         </div>
     </fieldset>
 </form>
-<a href="../../?do=register">Don't have account? Please register now!</a>
+<a href="?do=reset">Forget password? Click here!</a><br>
+<a href="?do=register">Don't have account? Please register now!</a>
