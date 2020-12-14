@@ -19,7 +19,7 @@ final class Repository {
         return true;
     }
 
-    public function findUserByLogin(string $login) : mixed {
+    public function findUserByLogin(string $login) : User|false {
         $result = false;
 
         $stmt = $this->pdo->prepare('SELECT * FROM users WHERE login=:login');
@@ -38,11 +38,33 @@ final class Repository {
         return $result;
     }
 
-    public function findUserByEmail(string $email) : mixed {
+    public function findUserByEmail(string $email) : User|false {
         $result = false;
 
         $stmt = $this->pdo->prepare('SELECT * FROM users WHERE email=:email');
         $stmt->execute(array(':email' => $email));
+        while ($fetch = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $result = new User(
+                $fetch['id'],
+                $fetch['login'],
+                $fetch['email'],
+                $fetch['salt'],
+                $fetch['pass'],
+                $fetch['active']
+            );
+        }
+
+        return $result;
+    }
+
+    public function findUserByLoginAndEmail(string $login, string $email) : User|false {
+        $result = false;
+
+        $stmt = $this->pdo->prepare('SELECT * FROM users WHERE login=:login and email=:email');
+        $stmt->execute(array(
+            ':login' => $login,
+            ':email' => $email
+        ));
         while ($fetch = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $result = new User(
                 $fetch['id'],
@@ -101,6 +123,59 @@ final class Repository {
         }
 
         return $result;
+    }
+
+    public function getUserIdByLastResetCode(string $code) : int|false {
+        $user = false;
+        $stmt = $this->pdo->prepare('SELECT user_id, created_at FROM reset WHERE used=0 and code = :code order by created_at');
+        $stmt->execute(array(':code' => $code));
+
+        while ($id = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $user = $id['user_id'];
+        }
+
+        return $user;
+    }
+
+    public function changePasswordByUserId(int $id, string $salt, string $pass) {
+        $stmt = $this->pdo->prepare('UPDATE users SET salt = :salt, pass = :pass WHERE id = :id');
+        $stmt->execute(array(
+            ':salt' => $salt,
+            ':pass' => $pass,
+            ':id' => $id
+        ));
+    }
+
+    public function addResetCodeByLoginAndEmail(string $login, string $email, string $code) : bool {
+        $user = $this->findUserByLoginAndEmail($login, $email);
+        if ($user === false) {
+            return false;
+        }
+
+        $stmt = $this->pdo->prepare('SELECT * FROM reset WHERE user_id=:user_id and used=0');
+        $stmt->execute(array(':user_id' => $user->getId()));
+        $exists = false;
+        while($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $exists = true;
+        }
+
+        if (!$exists) {
+            $stmt = $this->pdo->prepare('INSERT INTO reset(user_id, code, created_at, used)' .
+                'VALUES(:user_id, :code, :created_at, :used)');
+            $stmt->execute(array(
+                ':user_id' => $user->getId(),
+                ':code' => $code,
+                ':created_at' => date("Y-m-d H:i:s"),
+                'used' => false
+            ));
+        }
+
+        return true;
+    }
+
+    public function deactivateResetCodeByUserId(int $id) {
+        $stmt = $this->pdo->prepare('UPDATE reset SET used=1 WHERE user_id = :id');
+        $stmt->execute(array(':id' => $id));
     }
 }
 

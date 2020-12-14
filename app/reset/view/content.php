@@ -1,6 +1,10 @@
 <h2 class="content-subhead">Here you can reset password to your account</h2>
 <h3 id="error" style="color: red"></h3>
-<form action="#" method="post" class="pure-form pure-form-aligned">
+<h3 style="color: maroon"><?php
+    if (isset($_SESSION['error']))
+        echo $_SESSION['error'];
+    unset($_SESSION['error'])?></h3>
+<form action="reset/change_password.php" method="post" class="pure-form pure-form-aligned">
     <fieldset>
         <div class="pure-control-group">
             <label for="name">Username</label>
@@ -20,16 +24,20 @@
         <div id="newPasswordSubform" style="visibility: hidden;">
             <div class="pure-control-group">
                 <label for="password">New password</label>
-                <input type="text" id="password" name="password" placeholder="New password" />
+                <input type="password" id="password" name="password" placeholder="New password" />
                 <span class="pure-form-message-inline">Password must be at least 6 characters.</span>
             </div>
             <div class="pure-control-group">
                 <label for="passwordconf">Repeat</label>
-                <input type="text" id="passwordconf" name="passwordconf" placeholder="Repeat above" />
+                <input type="password" id="passwordconf" name="passwordconf" placeholder="Repeat above" />
             </div>
             <div class="pure-control-group">
                 <label for="resetcode">Code</label>
                 <input type="text" id="code" name="code" placeholder="Code" />
+            </div>
+            <div class="pure-controls">
+                <button class="pure-button" type="button" id="generateCodeButton" onclick="generateCode()">Generate Code</button>
+                <span class="pure-form-message-inline" id="generateCodeMessage"></span>
             </div>
             <div class="pure-controls">
                 <input type="submit" name="reset" value="Change" class="pure-button pure-button-primary">

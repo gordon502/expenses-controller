@@ -5,6 +5,12 @@
         unset($_SESSION['error']);
     } ?>
 </h3>
+<h3 style="color: green"><?php
+    if (isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+    } ?>
+</h3>
 <form action="login/process.php" method="post" class="pure-form pure-form-aligned">
     <fieldset>
         <div class="pure-control-group">
