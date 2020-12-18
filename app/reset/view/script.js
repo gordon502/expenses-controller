@@ -27,13 +27,13 @@ function checkUser() {
 
 function generateCode() {
     const link = `api/generate_reset_code.php?login=${$('#login').val()}&email=${$('#email').val()}`;
+    $('#spin2').css('visibility', 'visible');
+    $('#generateCodeButton').prop('disabled', true);
     $.getJSON(link, function (data) {
         if (data['success'])
             $('#generateCodeMessage').css('color', 'green');
         else
             $('#generateCodeMessage').css('color', 'red');
-        $('#spin2').css('visibility', 'visible');
-        $('#generateCodeButton').prop('disabled', true);
         setTimeout(() => {
             $('#generateCodeMessage').html(data['message']);
             $('#generateCodeButton').prop('disabled', false);

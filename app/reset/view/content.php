@@ -43,7 +43,7 @@
                 <span class="pure-form-message-inline" id="generateCodeMessage"></span>
             </div>
             <div class="pure-controls">
-                <input type="submit" id="reset" name="reset" value="Change" class="pure-button pure-button-primary">
+                <input type="submit" id="reset" name="reset" value="Change" class="pure-button pure-button-primary" disabled>
             </div>
         </div>
     </fieldset>

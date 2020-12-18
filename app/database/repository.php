@@ -152,23 +152,14 @@ final class Repository {
             return false;
         }
 
-        $stmt = $this->pdo->prepare('SELECT * FROM reset WHERE user_id=:user_id and used=0');
-        $stmt->execute(array(':user_id' => $user->getId()));
-        $exists = false;
-        while($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $exists = true;
-        }
-
-        if (!$exists) {
-            $stmt = $this->pdo->prepare('INSERT INTO reset(user_id, code, created_at, used)' .
-                'VALUES(:user_id, :code, :created_at, :used)');
-            $stmt->execute(array(
-                ':user_id' => $user->getId(),
-                ':code' => $code,
-                ':created_at' => date("Y-m-d H:i:s"),
-                'used' => false
-            ));
-        }
+        $stmt = $this->pdo->prepare('INSERT INTO reset(user_id, code, created_at, used)' .
+            'VALUES(:user_id, :code, :created_at, :used)');
+        $stmt->execute(array(
+            ':user_id' => $user->getId(),
+            ':code' => $code,
+            ':created_at' => date("Y-m-d H:i:s"),
+            'used' => false
+        ));
 
         return true;
     }

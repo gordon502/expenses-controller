@@ -20,6 +20,13 @@ if ($result) {
         'success' => true,
         'message' => 'Code generated! Please check email!'
     ));
+
+    // send code to e-mail
+    $to_email = $_GET['email'];
+    $subject = 'Reset code to your account';
+    $body = "Please enter this code into proper field: $code";
+
+    mail($to_email, $subject, $body);
     return;
 }
 else {
@@ -30,4 +37,3 @@ else {
     return;
 }
 
-// TODO: SEND RESET CODE TO EMAIL
