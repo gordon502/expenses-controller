@@ -4,6 +4,7 @@ $MIN_LOGIN_LENGTH = 8;
 $MAX_LOGIN_LENGTH = 45;
 $MIN_PASSWORD_LENGTH = 6;
 $MAX_PASSWORD_LENGTH = 20;
+$confirmation_link = 'http://localhost/expenses-controller/app/register/activate.php?code=';
 
 
 function checkUserInput(string $login, string $password, string $passwordconf, string $email) : bool {
@@ -84,6 +85,13 @@ $repository->addActivationLinkByUserId($insertedID, $link);
 $_SESSION['message'] = 'Register done! We send you activation link to your email account.';
 header('Location: ../?do=register');
 
-// TODO: Configure email account and send them activation link.
+
+
+// send activation link to email
+$to_email = $_POST['email'];
+$subject = 'Welcome to expenses controller!';
+$body = "To finish account activation, please click link: " . $confirmation_link . $link;
+
+mail($to_email, $subject, $body);
 
 
