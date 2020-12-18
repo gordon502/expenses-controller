@@ -81,7 +81,7 @@ $hash = hash('md5', strval(random_int(PHP_INT_MIN, PHP_INT_MAX)));
 $link = substr($hash, 0, 30);
 $repository->addActivationLinkByUserId($insertedID, $link);
 
-$_SESSION['error'] = 'Register done! We send you registration link to your email account.';
+$_SESSION['message'] = 'Register done! We send you activation link to your email account.';
 header('Location: ../?do=register');
 
 // TODO: Configure email account and send them activation link.

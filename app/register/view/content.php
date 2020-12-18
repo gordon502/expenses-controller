@@ -5,30 +5,39 @@
         unset($_SESSION['error']);
     } ?>
 </h3>
+<h3 style="color: green">
+    <?php
+    if (isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+    } ?>
+</h3>
 <form action="register/process.php" method="post" class="pure-form pure-form-aligned">
     <fieldset>
         <div class="pure-control-group">
             <label for="name">Username</label>
-            <input type="text" id="login" name="login" placeholder="Username" />
-            <span class="pure-form-message-inline">Login must be at least 8 characters.</span>
+            <input type="text" id="login" name="login" placeholder="Username" required/>
+            <span id="loginerror" class="pure-form-message-inline" style="color: red"></span>
         </div>
         <div class="pure-control-group">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Password" />
-            <span class="pure-form-message-inline">Password must be at least 6 character.</span>
+            <input type="password" id="password" name="password" placeholder="Password" required/>
+            <span id="passworderror" class="pure-form-message-inline" style="color: red"></span>
         </div>
         <div class="pure-control-group">
             <label for="passwordconf">Repeat</label>
-            <input type="password" id="passwordconf" name="passwordconf" placeholder="Password" />
+            <input type="password" id="passwordconf" name="passwordconf" placeholder="Password" required/>
+            <span id="passwordconferror" class="pure-form-message-inline" style="color: red"></span>
         </div>
         <div class="pure-control-group">
             <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Email Address" />
-            <span class="pure-form-message-inline">You must enter not registered mail address.</span>
+            <input type="email" id="email" name="email" placeholder="Email Address" required/>
+            <span id="emailerror" class="pure-form-message-inline" style="color: red"></span>
         </div>
         <div class="pure-controls">
-            <input type="submit" name="register" value="Register" class="pure-button pure-button-primary">
+            <input type="submit" id="register" name="register" value="Register" class="pure-button pure-button-primary" disabled>
         </div>
     </fieldset>
 </form>
 <a href="?do=login">Already have account? Please log in.</a>
+<script src="register/view/validation.js"></script>

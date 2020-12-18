@@ -5,7 +5,7 @@ $MAX_LOGIN_LENGTH = 45;
 $MIN_PASSWORD_LENGTH = 6;
 $MAX_PASSWORD_LENGTH = 20;
 
-function checkUserInput(string $username, string $password) {
+function checkUserInput(string $username, string $password) : bool {
     global $MIN_LOGIN_LENGTH, $MAX_LOGIN_LENGTH, $MIN_PASSWORD_LENGTH, $MAX_PASSWORD_LENGTH;
 
     // check if login length matches in interval
