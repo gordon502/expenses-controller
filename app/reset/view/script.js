@@ -36,7 +36,8 @@ function generateCode() {
             $('#generateCodeMessage').css('color', 'red');
         setTimeout(() => {
             $('#generateCodeMessage').html(data['message']);
-            $('#generateCodeButton').prop('disabled', false);
+            if (!data['success'])
+                $('#generateCodeButton').prop('disabled', false);
             $('#spin2').css('visibility', 'hidden');
         }, 2000);
     });
