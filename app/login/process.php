@@ -58,8 +58,9 @@ if (!$user->getActive()) {
 // check password
 $calculated_hash = hash('sha256', $user->getSalt() . $_POST['password']);
 if ($calculated_hash === $user->getPass()) {
-    $_SESSION['error'] = 'Login successful!';
-    header('Location: ../?do=login');
+    //$_SESSION['error'] = 'Login successful!';
+    $_SESSION['user'] = $user;
+    header('Location: ../?do=overview');
     return;
 }
 else {

@@ -31,11 +31,26 @@ if (isset($_GET['do'])) {
 
     <div id="menu">
         <div class="pure-menu">
-            <a class="pure-menu-heading" href="#">Unlogged</a>
+            <a class="pure-menu-heading" href="#"><?php
+                if (isset($_SESSION['user']))
+                    echo 'Welcome'; // logged user
+                else
+                    echo 'unlogged';
+                ?></a>
 
             <ul class="pure-menu-list">
-                <li class="pure-menu-item menu-item-divided"><a href="?do=login" class="pure-menu-link">Login</a></li>
-                <li class="pure-menu-item"><a href="?do=register" class="pure-menu-link">Register</a></li>
+                <?php
+                if (isset($_SESSION['user'])) echo
+                    '
+                     <li class="pure-menu-item"><a href="?do=overview" class="pure-menu-link">Overview</a></li>
+                     <li class="pure-menu-item"><a href="?do=bills" class="pure-menu-link">Bills</a></li>
+                     <li class="pure-menu-item"><a href="?do=recharges" class="pure-menu-link">Recharges</a></li>
+                     <li class="pure-menu-item"><a href="?do=account" class="pure-menu-link">Account</a></li>
+                     <li class="pure-menu-item"><a href="logout.php" class="pure-menu-link">Logout</a></li>';
+                else echo
+                    '<li class="pure-menu-item menu-item-divided"><a href="?do=login" class="pure-menu-link">Login</a></li>
+                     <li class="pure-menu-item"><a href="?do=register" class="pure-menu-link">Register</a></li>';
+                ?>
             </ul>
         </div>
     </div>
