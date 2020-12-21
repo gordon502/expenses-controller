@@ -1,12 +1,36 @@
 <?php
+
+function checkPermissions(string $action, bool $isUserLogged) : bool {
+    $unlogged_actions = array('login', 'register', 'reset');
+    $logged_actions = array('overview', 'bills', 'recharges', 'account');
+
+    if ($isUserLogged) {
+        if (in_array($action, $logged_actions))
+            return true;
+        return false;
+    }
+
+    else {
+        if (in_array($action, $unlogged_actions))
+            return true;
+        return false;
+    }
+}
+
 session_start();
 $header = '123.php';
 $content = '123.php';
 
+
 // set which header and content load depend on GET 'do' param
 if (isset($_GET['do'])) {
-    $header = htmlentities($_GET['do']) . "/view/header.php";
-    $content = htmlentities($_GET['do']) . '/view/content.php';
+    $permission = checkPermissions($_GET['do'], isset($_SESSION['user']));
+    if (!$permission) {
+        if (isset($_SESSION['user']))
+            header('Location: ?do=overview');
+        else
+            header('Location: ?do=login');
+    }
 }
 ?>
 
