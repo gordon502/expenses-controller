@@ -3,7 +3,7 @@ session_start();
 
 //prevent from action [already logged user]
 if (isset($_SESSION['user'])) {
-    header('Location: ../?do=overview');
+    header('Location: ../../?do=overview');
     return;
 }
 
@@ -32,19 +32,19 @@ function checkUserInput(string $username, string $password) : bool {
 
 // check if login form was sended
 if (!isset($_POST['login'])) {
-    header('Location: ../?do=login');
+    header('Location: ../../?do=login');
     return;
 }
 
 
 // check if given username and password match constraints
 if (!checkUserInput($_POST['username'], $_POST['password'])) {
-    header('Location: ../?do=login');
+    header('Location: ../../?do=login');
     return;
 }
 
-require_once '../database/repository.php';
-require_once '../model/User.php';
+require_once '../../database/Repository.php';
+require_once '../../model/User.php';
 $repository = new Repository();
 
 $user = $repository->findUserByLogin($_POST['username']);
@@ -52,13 +52,13 @@ $user = $repository->findUserByLogin($_POST['username']);
 // check if user exists
 if (!$user) {
     $_SESSION['error'] = 'User with given login doesn\'t exists!';
-    header("Location: ../?do=login");
+    header("Location: ../../?do=login");
     return;
 }
 
 if (!$user->getActive()) {
     $_SESSION['error'] = 'Account not active! Please go to your mail and click activation link!';
-    header('Location: ../?do=login');
+    header('Location: ../../?do=login');
     return;
 }
 
@@ -67,11 +67,11 @@ $calculated_hash = hash('sha256', $user->getSalt() . $_POST['password']);
 if ($calculated_hash === $user->getPass()) {
     //$_SESSION['error'] = 'Login successful!';
     $_SESSION['user'] = $user;
-    header('Location: ../?do=overview');
+    header('Location: ../../?do=overview');
     return;
 }
 else {
     $_SESSION['error'] = 'Wrong password!';
-    header('Location: ../?do=login');
+    header('Location: ../../?do=login');
     return;
 }

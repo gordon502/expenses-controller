@@ -4,7 +4,7 @@
     if (isset($_SESSION['error']))
         echo $_SESSION['error'];
     unset($_SESSION['error'])?></h3>
-<form action="reset/change_password.php" method="post" class="pure-form pure-form-aligned">
+<form action="actions/reset/change_password.php" method="post" class="pure-form pure-form-aligned">
     <fieldset>
         <div class="pure-control-group">
             <label for="name">Username</label>
@@ -48,4 +48,4 @@
         </div>
     </fieldset>
 </form>
-<script src="reset/view/script.js"></script>
+<script src="template/reset/script.js"></script>

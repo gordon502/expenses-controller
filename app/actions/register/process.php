@@ -3,7 +3,7 @@ session_start();
 
 //prevent from action [already logged user]
 if (isset($_SESSION['user'])) {
-    header('Location: ../?do=overview');
+    header('Location: ../../?do=overview');
     return;
 }
 
@@ -48,31 +48,31 @@ function checkUserInput(string $login, string $password, string $passwordconf, s
 
 // check if form was sended, if not redirect back to register page
 if (!isset($_POST['register'])) {
-    header('Location: ../?do=register');
+    header('Location: ../../?do=register');
     return;
 }
 
 // validate if user input match constraints
 if (!checkUserInput($_POST['login'], $_POST['password'], $_POST['passwordconf'], $_POST['email'])) {
-    header('Location: ../?do=register');
+    header('Location: ../../?do=register');
     return;
 }
 
-require_once "../database/repository.php";
-require_once "../model/User.php";
+require_once "../../database/Repository.php";
+require_once "../../model/User.php";
 $repository = new Repository();
 
 // check if given user already exists
 if ($repository->findUserByLogin($_POST['login'])) {
     $_SESSION['error'] = 'User with given login already exists!';
-    header('Location: ../?do=register');
+    header('Location: ../../?do=register');
     return;
 }
 
 // check if given mail is already used
 if ($repository->findUserByEmail($_POST['email'])) {
     $_SESSION['error'] = 'Given email is already taken!';
-    header('Location: ../?do=register');
+    header('Location: ../../?do=register');
     return;
 }
 
@@ -90,7 +90,7 @@ $link = substr($hash, 0, 30);
 $repository->addActivationLinkByUserId($insertedID, $link);
 
 $_SESSION['message'] = 'Register done! We send you activation link to your email account.';
-header('Location: ../?do=register');
+header('Location: ../../?do=register');
 
 
 

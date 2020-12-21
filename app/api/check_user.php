@@ -14,7 +14,7 @@ if (!isset($_GET['login']) and !isset($_GET['email'])) {
 }
 
 
-require_once '../database/repository.php';
+require_once '../database/Repository.php';
 require_once '../model/User.php';
 $repository = new Repository();
 

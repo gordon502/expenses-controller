@@ -15,7 +15,7 @@ if (!isset($_POST['reset'])) {
     return;
 }
 
-require_once '../database/repository.php';
+require_once '../database/Repository.php';
 require_once '../model/User.php';
 $repository = new Repository();
 

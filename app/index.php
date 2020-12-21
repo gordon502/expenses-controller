@@ -36,8 +36,8 @@ if (isset($_GET['do'])) {
         }
     }
 
-    $header = "$_GET[do]/view/header.php";
-    $content = "$_GET[do]/view/content.php";
+    $header = "template/$_GET[do]/header.php";
+    $content = "template/$_GET[do]/content.php";
 }
 ?>
 

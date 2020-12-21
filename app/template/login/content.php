@@ -11,7 +11,7 @@
         unset($_SESSION['message']);
     } ?>
 </h3>
-<form action="login/process.php" method="post" class="pure-form pure-form-aligned">
+<form action="actions/login/process.php" method="post" class="pure-form pure-form-aligned">
     <fieldset>
         <div class="pure-control-group">
             <label for="username">Username</label>

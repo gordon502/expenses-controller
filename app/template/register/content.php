@@ -12,7 +12,7 @@
         unset($_SESSION['message']);
     } ?>
 </h3>
-<form action="register/process.php" method="post" class="pure-form pure-form-aligned">
+<form action="actions/register/process.php" method="post" class="pure-form pure-form-aligned">
     <fieldset>
         <div class="pure-control-group">
             <label for="name">Username</label>
@@ -40,4 +40,4 @@
     </fieldset>
 </form>
 <a href="?do=login">Already have account? Please log in.</a>
-<script src="register/view/validation.js"></script>
+<script src="template/register/validation.js"></script>

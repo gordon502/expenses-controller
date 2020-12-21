@@ -7,7 +7,7 @@ if (!isset($_GET['login']) or !isset($_GET['email'])) {
     return;
 }
 
-require_once '../database/repository.php';
+require_once '../database/Repository.php';
 $repository = new Repository();
 
 
