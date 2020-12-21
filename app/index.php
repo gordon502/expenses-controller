@@ -26,11 +26,18 @@ $content = '123.php';
 if (isset($_GET['do'])) {
     $permission = checkPermissions($_GET['do'], isset($_SESSION['user']));
     if (!$permission) {
-        if (isset($_SESSION['user']))
+        if (isset($_SESSION['user'])) {
             header('Location: ?do=overview');
-        else
+            return;
+        }
+        else {
             header('Location: ?do=login');
+            return;
+        }
     }
+
+    $header = "$_GET[do]/view/header.php";
+    $content = "$_GET[do]/view/content.php";
 }
 ?>
 
