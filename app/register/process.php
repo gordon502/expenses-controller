@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+//prevent from action [already logged user]
+if (isset($_SESSION['user'])) {
+    header('Location: ../?do=overview');
+    return;
+}
+
 $MIN_LOGIN_LENGTH = 8;
 $MAX_LOGIN_LENGTH = 45;
 $MIN_PASSWORD_LENGTH = 6;
