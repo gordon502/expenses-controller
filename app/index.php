@@ -53,6 +53,7 @@ if (isset($_GET['do'])) {
     <title>Expenses controller</title>
     <link rel="stylesheet" href="pure/pure-min.css">
     <link rel="stylesheet" href="pure/side-menu.css">
+    <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
 </head>
 <body>
 <script src="pure/jquery-3.5.1.min.js"></script>
@@ -100,5 +101,6 @@ if (isset($_GET['do'])) {
     </div>
 </div>
 <script src="pure/ui.js"></script>
+<script type="text/javascript" src="DataTables/datatables.min.js"></script>
 </body>
 </html>

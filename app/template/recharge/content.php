@@ -16,7 +16,7 @@ foreach ($recharges as $recharge) {
 ?>
 
 
-<table class="pure-table pure-table-horizontal">
+<table id="rechargeTable">
     <thead>
     <tr>
         <th>Start date</th>
@@ -30,3 +30,6 @@ foreach ($recharges as $recharge) {
     </tbody>
 </table>
 
+<script>$(document).ready(function () {
+    $('#rechargeTable').DataTable();
+})</script>
