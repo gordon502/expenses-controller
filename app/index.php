@@ -1,8 +1,11 @@
 <?php
+require 'model/Recharge.php';
+require 'model/User.php';
+require 'database/Repository.php';
 
 function checkPermissions(string $action, bool $isUserLogged) : bool {
     $unlogged_actions = array('login', 'register', 'reset');
-    $logged_actions = array('overview', 'bills', 'recharges', 'account');
+    $logged_actions = array('overview', 'bills', 'recharge', 'account');
 
     if ($isUserLogged) {
         if (in_array($action, $logged_actions))
@@ -75,7 +78,7 @@ if (isset($_GET['do'])) {
                     '
                      <li class="pure-menu-item"><a href="?do=overview" class="pure-menu-link">Overview</a></li>
                      <li class="pure-menu-item"><a href="?do=bills" class="pure-menu-link">Bills</a></li>
-                     <li class="pure-menu-item"><a href="?do=recharges" class="pure-menu-link">Recharges</a></li>
+                     <li class="pure-menu-item"><a href="?do=recharge" class="pure-menu-link">Recharges</a></li>
                      <li class="pure-menu-item"><a href="?do=account" class="pure-menu-link">Account</a></li>
                      <li class="pure-menu-item"><a href="logout.php" class="pure-menu-link">Logout</a></li>';
                 else echo

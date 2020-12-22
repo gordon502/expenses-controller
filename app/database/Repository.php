@@ -168,6 +168,24 @@ final class Repository {
         $stmt = $this->pdo->prepare('UPDATE reset SET used=1 WHERE user_id = :id');
         $stmt->execute(array(':id' => $id));
     }
+
+    public function getRechargesByUserId(int $user_id) : array {
+        $recharges = array();
+        $stmt = $this->pdo->prepare('SELECT * FROM recharge WHERE user_id=:user_id');
+        $stmt->execute(array(':user_id' => $user_id));
+
+        while($recharge = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $recharges[] = new Recharge(
+                $recharge['id'],
+                $recharge['user_id'],
+                $recharge['amount'],
+                $recharge['start_date'],
+                $recharge['end_date']
+            );
+        }
+
+        return $recharges;
+    }
 }
 
 
