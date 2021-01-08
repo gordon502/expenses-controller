@@ -11,7 +11,7 @@ $MIN_LOGIN_LENGTH = 8;
 $MAX_LOGIN_LENGTH = 45;
 $MIN_PASSWORD_LENGTH = 6;
 $MAX_PASSWORD_LENGTH = 20;
-$confirmation_link = 'http://localhost/expenses-controller/app/register/activate.php?code=';
+$confirmation_link = 'http://localhost/expenses-controller/app/actions/register/activate.php?code=';
 
 
 function checkUserInput(string $login, string $password, string $passwordconf, string $email) : bool {
