@@ -1,7 +1,8 @@
 <?php
 $repository = new Repository();
+$logged_user = unserialize($_SESSION['user']);
 
-$recharges =  $repository->getRechargesByUserId($_SESSION['user']->getId());
+$recharges =  $repository->getRechargesByUserId($logged_user->getId());
 $table_content = '';
 
 foreach ($recharges as $recharge) {
@@ -50,6 +51,7 @@ foreach ($recharges as $recharge) {
     <tbody>
     <tr>
         <form action="actions/recharge/insert.php" method="post">
+            <input type="hidden" name="user_id" value="<?=$logged_user->getId()?>">
             <td><input type="date" name="startdate" required></td>
             <td><input type="date" name="enddate"></td>
             <td><input type="number" name="amount" required></td>

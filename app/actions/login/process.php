@@ -66,7 +66,7 @@ if (!$user->getActive()) {
 $calculated_hash = hash('sha256', $user->getSalt() . $_POST['password']);
 if ($calculated_hash === $user->getPass()) {
     //$_SESSION['error'] = 'Login successful!';
-    $_SESSION['user'] = $user;
+    $_SESSION['user'] = serialize($user);
     header('Location: ../../?do=overview');
     return;
 }

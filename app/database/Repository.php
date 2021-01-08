@@ -186,6 +186,17 @@ final class Repository {
 
         return $recharges;
     }
+
+    public function insertRecharge(Recharge $recharge) {
+        $stmt = $this->pdo->prepare('INSERT INTO recharge(user_id, amount, start_date, end_date) VALUES' .
+                                                '(:user_id, :amount, :start_date, :end_date)');
+        $stmt->execute(array(
+            ':user_id' => $recharge->getUserId(),
+            ':amount' => $recharge->getAmount(),
+            ':start_date' => $recharge->getStartDate(),
+            ':end_date' => $recharge->getEndDate()
+            ));
+    }
 }
 
 
