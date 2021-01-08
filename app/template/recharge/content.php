@@ -6,12 +6,18 @@ $recharges =  $repository->getRechargesByUserId($logged_user->getId());
 $table_content = '';
 
 foreach ($recharges as $recharge) {
+    $end_date = $recharge->getEndDate() !== null ? $recharge->getEndDate() : 'not specified';
     $table_content .= '
         <tr>
-            <td>'. $recharge->getStartDate() . '</td>
-            <td>'. $recharge->getEndDate() . '</td>
-            <td>'. $recharge->getAmount() / 100 . '</td>
-            <td><input class="pure-button" type="submit" value="Modify"> / <input class="pure-button" type="submit" value="Delete"></td>
+            <td>' . $recharge->getStartDate() . '</td>
+            <td>' . $end_date . '</td>
+            <td>' . $recharge->getAmount() / 100 . '</td>
+            <td><input class="pure-button" type="submit" value="Modify">
+            <form class="pure-form" method="post" action="actions/recharge/delete.php">
+                <input type="hidden" name="user_id" value="' . $logged_user->getId() . '">
+                <input type="hidden" name="recharge_id" value="' . $recharge->getId() . '">
+                <input class="pure-button" type="submit" value="Delete"></td>
+            </form>
         </tr>';
 }
 ?>

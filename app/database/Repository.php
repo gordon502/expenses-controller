@@ -197,6 +197,14 @@ final class Repository {
             ':end_date' => $recharge->getEndDate()
             ));
     }
+
+    public function deleteRecharge(int $recharge_id, int $user_id) {
+        $stmt = $this->pdo->prepare('DELETE FROM recharge WHERE id=:recharge_id and user_id=:user_id');
+
+        $stmt->execute(array(
+            ':recharge_id' => $recharge_id,
+            ':user_id' => $user_id));
+    }
 }
 
 
