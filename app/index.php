@@ -5,7 +5,7 @@ require 'database/Repository.php';
 
 function checkPermissions(string $action, bool $isUserLogged) : bool {
     $unlogged_actions = array('login', 'register', 'reset');
-    $logged_actions = array('overview', 'bills', 'recharge', 'account');
+    $logged_actions = array('overview', 'bill', 'recharge', 'account');
 
     if ($isUserLogged) {
         if (in_array($action, $logged_actions))
@@ -78,7 +78,7 @@ if (isset($_GET['do'])) {
                 if (isset($_SESSION['user'])) echo
                     '
                      <li class="pure-menu-item"><a href="?do=overview" class="pure-menu-link">Overview</a></li>
-                     <li class="pure-menu-item"><a href="?do=bills" class="pure-menu-link">Bills</a></li>
+                     <li class="pure-menu-item"><a href="?do=bill" class="pure-menu-link">Bills</a></li>
                      <li class="pure-menu-item"><a href="?do=recharge" class="pure-menu-link">Recharges</a></li>
                      <li class="pure-menu-item"><a href="?do=account" class="pure-menu-link">Account</a></li>
                      <li class="pure-menu-item"><a href="logout.php" class="pure-menu-link">Logout</a></li>';
