@@ -1,4 +1,6 @@
 <?php
+require_once '../database/Repository.php';
+require_once '../model/User.php';
 // params in request must be given
 if (!isset($_GET['login']) or !isset($_GET['email'])) {
     echo json_encode(array(
@@ -7,7 +9,7 @@ if (!isset($_GET['login']) or !isset($_GET['email'])) {
     return;
 }
 
-require_once '../database/Repository.php';
+
 $repository = new Repository();
 
 
