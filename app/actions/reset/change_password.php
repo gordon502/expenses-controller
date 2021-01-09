@@ -15,8 +15,8 @@ if (!isset($_POST['reset'])) {
     return;
 }
 
-require_once '../database/Repository.php';
-require_once '../model/User.php';
+require_once '../../database/Repository.php';
+require_once '../../model/User.php';
 $repository = new Repository();
 
 $userFoundByLogin = $repository->findUserByLogin($_POST['login']);
@@ -76,7 +76,7 @@ $repository->changePasswordByUserId($userIdFoundByResetCode, $salt, $pass);
 $repository->deactivateResetCodeByUserId($userIdFoundByResetCode);
 
 $_SESSION['message'] = 'Password changed! Now please log in.';
-header('Location: ../?do=login');
+header('Location: ../../?do=login');
 
 
 
