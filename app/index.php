@@ -1,6 +1,8 @@
 <?php
 require 'model/Recharge.php';
 require 'model/User.php';
+require 'model/Bill.php';
+require 'model/Category.php';
 require 'database/Repository.php';
 
 function checkPermissions(string $action, bool $isUserLogged) : bool {
