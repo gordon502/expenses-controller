@@ -227,6 +227,15 @@ final class Repository {
             'user_id' => $category->getUserId()
         ));
     }
+
+    public function deleteCategory(Category $category) : void {
+        $stmt = $this->pdo->prepare('DELETE FROM category WHERE id=:id and user_id=:user_id');
+
+        $stmt->execute(array(
+            'id' => $category->getId(),
+            'user_id' => $category->getUserId()
+        ));
+    }
 }
 
 

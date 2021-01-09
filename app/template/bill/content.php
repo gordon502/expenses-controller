@@ -7,15 +7,15 @@ $number = 1;
 $tablecontent = '';
 foreach ($categories as $category) {
     $tablecontent .= '
-        <tr><form method="post" action="actions/bill/modify_category.php">
+        <tr><form method="post" action="actions/bill/modify_or_delete_category.php">
             <td>' . $number . '</td>
             <td><input type="text" name="name" value="' . $category->getName() . '" required></td>
             <td>
                 <input type="hidden" name="id" value="' . $category->getId() . '">
                 <input type="hidden" name="user_id" value="' . $category->getUserId() . '">
-                <input class="pure-button" type="submit" value="Modify" style="background: deepskyblue">
-                <input class="button-error pure-button" type="submit" value="Delete" onclick="confirm(`Are you sure? This is not reversible!`)"
-                style="background: red;">
+                <input class="pure-button" type="submit" name="modify" value="Modify" style="background: deepskyblue">
+                <input class="button-error pure-button" type="submit" name="delete" value="Delete" 
+                onclick="return confirm(`Are you sure? This is not reversible!`)" style="background: red;">
             </td>
         </form></tr>
     ';
@@ -40,6 +40,11 @@ foreach ($categories as $category) {
     </tr>
     </thead>
     <tbody>
+        <tr>
+            <td>Insert new</td>
+            <td></td>
+            <td></td>
+        </tr>
         <?=$tablecontent?>
     </tbody>
 </table>
