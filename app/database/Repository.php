@@ -209,12 +209,13 @@ final class Repository {
     public function getCategoriesByUserId(int $user_id) : array {
         $categories = array();
 
-        $stmt = $this->pdo->prepare('SELECT * FROM loads WHERE user_id=:user_id');
+        $stmt = $this->pdo->prepare('SELECT * FROM category WHERE user_id=:user_id');
         $stmt->execute(array(':user_id' => $user_id));
 
         while ($category = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $categories[] = new Category()
+            $categories[] = new Category($category['id'], $category['name'], $category['user_id']);
         }
+        return $categories;
     }
 }
 
