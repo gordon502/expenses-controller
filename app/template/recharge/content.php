@@ -12,12 +12,12 @@ foreach ($recharges as $recharge) {
             <td>' . $recharge->getStartDate() . '</td>
             <td>' . $end_date . '</td>
             <td>' . $recharge->getAmount() / 100 . '</td>
-            <td><input class="pure-button" type="submit" value="Modify">
-            <form class="pure-form" method="post" action="actions/recharge/delete.php">
-                <input type="hidden" name="user_id" value="' . $logged_user->getId() . '">
-                <input type="hidden" name="recharge_id" value="' . $recharge->getId() . '">
-                <input class="pure-button" type="submit" value="Delete"></td>
-            </form>
+            <td>
+                <form class="pure-form" method="post" action="actions/recharge/delete.php">
+                    <input type="hidden" name="user_id" value="' . $logged_user->getId() . '">
+                    <input type="hidden" name="recharge_id" value="' . $recharge->getId() . '">
+                    <input class="pure-button" type="submit" value="Delete"></td>
+                </form>
         </tr>';
 }
 ?>
@@ -30,7 +30,7 @@ foreach ($recharges as $recharge) {
     ?>
 </h3>
 
-<table id="rechargeTable">
+<table id="rechargeTable" class="display cell-border dt-center">
     <thead>
     <tr>
         <th>Start date</th>
