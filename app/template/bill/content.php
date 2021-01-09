@@ -40,10 +40,12 @@ foreach ($categories as $category) {
     </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Insert new</td>
-            <td></td>
-            <td></td>
+        <tr disabled>
+            <form method="post" action="actions/bill/insert_category.php">
+                <td>***NEW***<input type="hidden" name="user_id" value=<?=$user->getId()?>></td>
+                <td><input type="text" name="name" required></td>
+                <td><input class="pure-button" type="submit" value="Add"></td>
+            </form>
         </tr>
         <?=$tablecontent?>
     </tbody>

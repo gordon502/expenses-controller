@@ -222,9 +222,9 @@ final class Repository {
         $stmt = $this->pdo->prepare('UPDATE category SET name=:name WHERE id=:id and user_id=:user_id');
 
         $stmt->execute(array(
-            'name' => $category->getName(),
-            'id' => $category->getId(),
-            'user_id' => $category->getUserId()
+            ':name' => $category->getName(),
+            ':id' => $category->getId(),
+            ':user_id' => $category->getUserId()
         ));
     }
 
@@ -232,8 +232,17 @@ final class Repository {
         $stmt = $this->pdo->prepare('DELETE FROM category WHERE id=:id and user_id=:user_id');
 
         $stmt->execute(array(
-            'id' => $category->getId(),
-            'user_id' => $category->getUserId()
+            ':id' => $category->getId(),
+            ':user_id' => $category->getUserId()
+        ));
+    }
+
+    public function insertCategory (Category $category) : void {
+        $stmt = $this->pdo->prepare('INSERT INTO category(name, user_id) VALUES (:name, :user_id)');
+
+        $stmt->execute(array(
+            ':name' => $category->getName(),
+            ':user_id' => $category->getUserId()
         ));
     }
 }
