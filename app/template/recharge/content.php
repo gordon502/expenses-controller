@@ -16,7 +16,7 @@ foreach ($recharges as $recharge) {
                 <form class="pure-form" method="post" action="actions/recharge/delete.php">
                     <input type="hidden" name="user_id" value="' . $logged_user->getId() . '">
                     <input type="hidden" name="recharge_id" value="' . $recharge->getId() . '">
-                    <input class="pure-button" type="submit" value="Delete"></td>
+                    <input class="pure-button" type="submit" value="Delete" onclick="return confirm(`Are you sure? Operation is not reversible!`);"></td>
                 </form>
         </tr>';
 }
