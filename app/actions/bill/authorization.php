@@ -16,8 +16,6 @@ $logged_user = unserialize($_SESSION['user']);
 // prevent from doing unauthorized action
 if ($logged_user->getId() != $_POST['user_id']) {
     $_SESSION['error'] = 'You are not permitted for this action!';
-    print_r($logged_user->getId());
-    print_r($_POST['user_id']);
-    header('Location: ../../?do=recharge');
+    header('Location: ../../?do=bill');
     return;
 }

@@ -7,11 +7,11 @@ $number = 1;
 $tablecontent = '';
 foreach ($categories as $category) {
     $tablecontent .= '
-        <tr><form method="post" action="actions/bill/something.php">
+        <tr><form method="post" action="actions/bill/modify_category.php">
             <td>' . $number . '</td>
             <td><input type="text" name="name" value="' . $category->getName() . '" required></td>
             <td>
-                <input type="hidden" name="id" value="' . $category->getId() . '"
+                <input type="hidden" name="id" value="' . $category->getId() . '">
                 <input type="hidden" name="user_id" value="' . $category->getUserId() . '">
                 <input class="pure-button" type="submit" value="Modify" style="background: deepskyblue">
                 <input class="button-error pure-button" type="submit" value="Delete" onclick="confirm(`Are you sure? This is not reversible!`)"
@@ -24,7 +24,12 @@ foreach ($categories as $category) {
 ?>
 
 <h2>Categories</h2>
-
+<h3 style="color: red;"><?php
+    if (isset($_SESSION['error'])) {
+        echo $_SESSION['error'];
+        unset($_SESSION['error']);
+    }
+    ?></h3>
 
 <table class="pure-table pure-table-bordered" id="categoriesTable">
     <thead>
