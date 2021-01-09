@@ -2,21 +2,13 @@
 
 class Recharge {
 
-    private $id;
-    private $user_id;
-    private $amount;
-    private $start_date;
-    private $end_date;
-
-    /**
-     * Recharge constructor.
-     * @param $id
-     * @param $user_id
-     * @param $amount
-     * @param $start_date
-     * @param $end_date
-     */
-    public function __construct($id, $user_id, $amount, $start_date, $end_date) {
+    private int $id;
+    private int $user_id;
+    private int $amount;
+    private string $start_date;
+    private string|null $end_date;
+    
+    public function __construct(int $id, int $user_id, int $amount, string $start_date, string|null $end_date) {
         $this->id = $id;
         $this->user_id = $user_id;
         $this->amount = $amount;
@@ -25,63 +17,36 @@ class Recharge {
     }
 
 
-    /**
-     * @return mixed
-     */
-    public function getId() {
+    public function getId() : int {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUserId() {
+    public function getUserId() : int {
         return $this->user_id;
     }
 
-    /**
-     * @param mixed $user_id
-     */
-
-    /**
-     * @return mixed
-     */
-    public function getAmount() {
+    public function getAmount() : int {
         return $this->amount;
     }
 
-    /**
-     * @param mixed $amount
-     */
-    public function setAmount($amount): void {
+    public function setAmount(int $amount): void {
         $this->amount = $amount;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getStartDate() {
+    public function getStartDate() : string {
         return $this->start_date;
     }
 
-    /**
-     * @param mixed $start_date
-     */
-    public function setStartDate($start_date): void {
+
+    public function setStartDate(string $start_date): void {
         $this->start_date = $start_date;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getEndDate() {
+    public function getEndDate() : string|null {
         return $this->end_date;
     }
 
-    /**
-     * @param mixed $end_date
-     */
-    public function setEndDate($end_date): void {
+    public function setEndDate(string $end_date): void {
         $this->end_date = $end_date;
     }
 

@@ -1,14 +1,14 @@
 <?php
 
 class User {
-    private $id;
-    private $login;
-    private $email;
-    private $salt;
-    private $pass;
-    private $active;
+    private int $id;
+    private string $login;
+    private string $email;
+    private string $salt;
+    private string $pass;
+    private bool $active;
 
-    public function __construct(int $id, string $login, string $email, string $salt, string $pass, string $active) {
+    public function __construct(int $id, string $login, string $email, string $salt, string $pass, bool $active) {
         $this->id = $id;
         $this->login = $login;
         $this->email = $email;
@@ -32,7 +32,7 @@ class User {
     }
 
 
-    public function setEmail(string $email) {
+    public function setEmail(string $email) : void{
         $this->email = $email;
     }
 
@@ -42,7 +42,7 @@ class User {
     }
 
 
-    public function setSalt(string $salt) {
+    public function setSalt(string $salt) : void {
         $this->salt = $salt;
     }
 
@@ -52,7 +52,7 @@ class User {
     }
 
 
-    public function setPass(string $pass) {
+    public function setPass(string $pass) : void {
         $this->pass = $pass;
     }
 
@@ -60,7 +60,7 @@ class User {
         return $this->active;
     }
 
-    public function setActive(bool $active) {
+    public function setActive(bool $active) : void {
         $this->active = $active;
     }
 }
